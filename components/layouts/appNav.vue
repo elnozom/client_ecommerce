@@ -81,6 +81,11 @@
                                     {{$t('Store')}}
                                 </a>
                             </li>
+                            <li>
+                                <a href="software.html" >
+                                    {{$t('software')}}
+                                </a>
+                            </li>
                              <li v-for="group in groups" :key="group.id">
                                 <a @click.prevent="setGroup(group)"  v-if="$i18n.locale == 'ar'">
                                     {{group.GroupName}}

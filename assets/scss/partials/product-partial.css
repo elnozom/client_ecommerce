@@ -13,6 +13,10 @@
   border: 1px solid transparent;
 }
 
+.pr-partial:hover .meta .product-title {
+  max-height: auto;
+}
+
 .pr-partial .img {
   border: 1px solid var(--border-color-lighter);
   -webkit-transition: var(--primary-transition);
@@ -51,4 +55,4 @@
 .pr-partial .actions .active i {
   color: #fff;
 }
-/*# sourceMappingURL=product2.css.map */
+/*# sourceMappingURL=product-partial.css.map */

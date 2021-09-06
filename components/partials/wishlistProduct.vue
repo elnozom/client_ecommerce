@@ -74,4 +74,4 @@ export default {
 }
 </script>
 
-<style scoped src="@/assets/scss/partials/product2.css"/>
+<style scoped src="@/assets/scss/partials/product-partial.css"/>
