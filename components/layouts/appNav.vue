@@ -81,14 +81,12 @@
                                     {{$t('Store')}}
                                 </a>
                             </li>
-                             <li>
-                                <a @click.prevent="setGroup({id: 1 , GroupName : 'فواكهة' , GroupNameEn : 'fruits'})">
-                                    {{$t('fruits')}}
+                             <li v-for="group in groups" :key="group.id">
+                                <a @click.prevent="setGroup(group)"  v-if="$i18n.locale == 'ar'">
+                                    {{group.GroupName}}
                                 </a>
-                            </li>
-                            <li>
-                                <a @click.prevent="setGroup({id: 2 , GroupName : 'خضروات' , GroupNameEn : 'vigitables'})" >
-                                    {{$t('vigitables')}}
+                                <a @click.prevent="setGroup(group)"  v-else>
+                                    {{group.GroupNameEn}}
                                 </a>
                             </li>
                         </ul>
@@ -194,6 +192,7 @@ export default {
     },
     computed:{
         ...mapGetters({
+            groups: 'group/groups',
             count: 'cart/cartCount',
             loading: 'product/loading',
             filtersParams: 'product/filtersParams',

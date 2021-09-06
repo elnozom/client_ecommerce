@@ -42,7 +42,11 @@
                         </v-img>
                       </v-tab-item>
                     </v-tabs>
-                    <v-img v-else min-height="200" :src="product.ItemImage"></v-img>
+                    <div v-else>
+                      <v-img v-if="$route.query.whole == 1" min-height="200" :src="product.ItemImageWhole"></v-img>
+                      <v-img v-else :src="product.ItemImage"></v-img>
+
+                    </div>
 
                 </div>
               </v-col>
@@ -59,10 +63,12 @@
                 <!-- <p class="p">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis, quibusdam quos? Minima iure repellendus quia dignissimos perspiciatis similique consequatur optio reiciendis, repudiandae aperiam iste aspernatur, dicta asperiores corrupti distinctio soluta?
                 </p> -->
-                <div class="price  text-h4">
-                  <span class="text-primary">{{ $n(product.POSPP, 'currency' , 'en') }}</span>
+               
+                
+                  <span  v-if="product.MinorPerMajor > 1" class="text-primary">{{ $n(product.POSTP, 'currency' , 'en') }}</span>
+                  <span  v-else class="text-primary">{{ $n(product.POSPP, 'currency' , 'en') }}</span>
                   <!-- <del >{{ $n(120, 'currency' , 'en') }}</del> -->
-                </div>
+               
                 <div class="size-chart" v-if="product.sizes">
                   <h4 class="mb-4 mt-4">{{$t('sizes')}}</h4>
                   <v-chip-group
@@ -108,11 +114,13 @@
                     <v-icon>mdi-cart-arrow-down</v-icon>
                     <span >{{$t('add_to_cart')}}</span>
                   </v-btn>
-                  <v-btn v-else :disabled="product.InCart" text @click.prevent="addToCart" :class="{primary :product.InCart || activeCart.includes(product.id) , textWhite :product.InCart || activeCart.includes(product.id)}"  class="border  p-4 rounded-xl">
+                  <!-- // if product whole is less than 2 that means it even add whole only or part only so we need to display on btn -->
+                  <v-btn v-else :disabled="product.InCart" text @click.prevent="addToCart" :class="{primary :product.InCart ||activeCart.includes(`${$route.query.whole == 1 ? '0' : '1'}-${product.id}`) , textWhite :product.InCart ||activeCart.includes(`${$route.query.whole == 1 ? '0' : '1'}-${product.id}`)}"  class="border  p-4 rounded-xl">
                     <v-icon>mdi-cart-arrow-down</v-icon>
-                    <span v-if="product.InCart || activeCart.includes(product.id)">{{$t('on_your_cart')}}</span>
+                    <span v-if="product.InCart ||activeCart.includes(`${$route.query.whole == 1 ? '0' : '1'}-${product.id}`)">{{$t('on_your_cart')}}</span>
                     <span v-else>{{$t('add_to_cart')}}</span>
                   </v-btn>
+                 
                   <v-btn
                     class="mx-2 p-4 wishlist-btn border"
                     fab
@@ -131,7 +139,6 @@
               </v-col>
             </v-row>
 
-            
           </v-col>
         </v-row>
       </v-container>
@@ -161,7 +168,8 @@ export default {
   },
   created(){
     this.initSingleProduct() 
-  }
+  },
+ 
 }
 </script>
 

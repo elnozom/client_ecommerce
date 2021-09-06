@@ -4,7 +4,8 @@
             <div class="d-flex space-between">
                 <div class="d-flex right">
                     <div class="img pointer"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})">
-                        <v-img :src="product.ItemImage" lazy-src="https://qomra.pro/wp-content/uploads/2019/03/image-placeholder-350x350.png"/>
+                        <v-img v-if="product.whole == 0" :src="product.ItemImage" lazy-src="https://qomra.pro/wp-content/uploads/2019/03/image-placeholder-350x350.png"/>
+                        <v-img v-else :src="product.ItemImageWhole" lazy-src="https://qomra.pro/wp-content/uploads/2019/03/image-placeholder-350x350.png"/>
                     </div>
                     <div class="data pointer" @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})">
                         <h2 class="product-title"  v-if="$i18n.locale == 'ar'">{{product.ItemName}}</h2>

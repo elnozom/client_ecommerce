@@ -27,6 +27,11 @@
     }
     & .meta{
         padding: 40px 10px 0;
+
+        .product-title{
+            max-height: 50px;
+            overflow: hidden;
+        }
     }
 
     & .actions{

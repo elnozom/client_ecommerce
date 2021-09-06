@@ -8,23 +8,23 @@
             <div class="cartsummary__total"  v-if="typeof cart.products !== 'undefined'">
                 <div class="d-flex w-full justify-between items-center">
                     <h2>{{$t('subtotal')}}: </h2>
-                    <h2>EGP{{cart.subtotal}}</h2>
+                    <h2>{{ $n(cart.subtotal, 'currency' , 'en') }}</h2>
                 </div>
                 <div class="d-flex w-full justify-between items-center" v-if="cart.shipping">
                     <h2>{{$t('shipping')}}: </h2>
-                    <h2>EGP{{cart.shipping}}</h2>
+                    <h2>{{ $n(cart.shipping, 'currency' , 'en') }}</h2>
                 </div>
                 <div class="d-flex w-full justify-between items-center"  v-if="cart.discount_percent">
                     <h2>{{$t('discount')}}({{cart.discount_percent}}%): </h2>
-                    <h2>EGP{{cart.discount_value}}</h2>
+                    <h2>{{ $n(cart.discount_value, 'currency' , 'en') }}</h2>
                 </div>
                 <div class="d-flex w-full justify-between items-center"  v-else-if="cart.discount_value">
                     <h2>{{$t('discount')}}: </h2>
-                    <h2>EGP{{cart.discount_value}}</h2>
+                    <h2>{{ $n(cart.discount_value, 'currency' , 'en') }}</h2>
                 </div>
                 <div class="d-flex w-full justify-between items-center">
                     <h2>{{$t('total')}}: </h2>
-                    <h2>EGP{{cart.total}}</h2>
+                    <h2>{{ $n(cart.total, 'currency' , 'en') }}</h2>
                 </div>
             </div>
         </div>

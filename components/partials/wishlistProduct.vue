@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <v-col cols="4">
       <v-skeleton-loader
         v-if="loading"
         class="mx-auto"
@@ -7,7 +7,8 @@
       ></v-skeleton-loader>
       <div class="pr-partial" v-else>
         <div class="img" >
-          <v-img min-height="200" @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" :src="product.ItemImage"></v-img>
+          <v-img v-if="product.whole == 0" min-height="200" @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" :src="product.ItemImage"></v-img>
+          <v-img v-else min-height="200" @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" :src="product.ItemImageWhole"></v-img>
           <div class="actions">
              <v-btn
                 class="mx-2"
@@ -37,15 +38,21 @@
           </div>
         </div>
         <div class="meta text-center">
-          <h2 class="product-title pointer mb-2"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" v-if="$i18n.locale == 'ar'">{{product.ItemName}}</h2>
-          <h2 class="product-title  pointer mb-2"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" v-else>{{product.ItemNameEn}}</h2>
-          <div class="price">
-            <del class="text-sm">{{ $n(120, 'currency' , 'en') }}</del>
-            <span class="text-primary text-sm">{{ $n(100, 'currency' , 'en') }}</span>
+          <div v-if="product.whole == 0">
+            <h2 class="product-title pointer mb-2"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" v-if="$i18n.locale == 'ar'">{{product.ItemName}}</h2>
+            <h2 class="product-title  pointer mb-2"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" v-else>{{product.ItemNameEn}}</h2>
           </div>
+          <div v-else>
+            <h2 class="product-title pointer mb-2"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" v-if="$i18n.locale == 'ar'">{{product.ItemNameWhole}}</h2>
+            <h2 class="product-title  pointer mb-2"  @click.prevent="$router.push({name : `shop-id___${$i18n.locale}` , params : {id : product.id}})" v-else>{{product.ItemNameEnWhole}}</h2>
+          </div>
+          <div class="price">
+            <span class="text-primary text-sm">{{ $n(product.price, 'currency' , 'en') }}</span>
+          </div>
+        
         </div>
       </div>
-    </div>
+    </v-col>
 </template>
 
 <script>

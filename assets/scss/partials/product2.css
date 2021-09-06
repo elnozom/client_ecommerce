@@ -39,6 +39,11 @@
   padding: 40px 10px 0;
 }
 
+.pr-partial .meta .product-title {
+  max-height: 50px;
+  overflow: hidden;
+}
+
 .pr-partial .actions .active {
   background-color: var(--danger) !important;
 }

@@ -69,13 +69,13 @@ export const getters = {
         return state.loading
     },
     activeCart(state){
-        const ids = []
+        const result = []
         if(state.cart.products){
             state.cart.products.forEach(pr => {
-                ids.push(pr.id)
+                result.push(`${pr.whole ? '0' : '1'}-${pr.id}`)
             });
         }
-        return ids
+        return result
     },
     orderLoading(state){
         return state.orderLoading

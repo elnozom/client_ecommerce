@@ -109,7 +109,7 @@
             .then(()=>{
                 const snackbar = {
                     active : true,
-                    text: 'logged in successfully'
+                    text: 'logged_in_successfully'
                 }
                 this.$store.commit('ui/setSnackbar' , snackbar)
                 this.loading  = false
@@ -118,6 +118,7 @@
                         product : localStorage.getItem('product'),
                         qty : localStorage.getItem('qty')
                     }
+                    if(localStorage.getItem('whole')) payload.whole = localStorage.getItem('whole')
                     this.$store.dispatch('cart/create' , payload)
                     .then(() => {
                         localStorage.removeItem('product')
